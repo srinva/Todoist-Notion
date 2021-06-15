@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@notionhq/client": "^0.1.9",
+    "@octokit/core": "^3.5.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

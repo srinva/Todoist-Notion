@@ -1,10 +1,12 @@
 require('dotenv').config();
 const { Client } = require("@notionhq/client")
+const { Octokit } = require("@octokit/core")
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const https = require('https')
 var cors = require('cors')
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 
 app.use(
@@ -74,7 +76,16 @@ function createTodoistTask(name, due, priority) {
   req.write(data)
   req.end()
 }
-createTodoistTask("Node test", "today", 2)
+
+async function createGithubIssue() {
+  await octokit.request('POST /repos/{owner}/{repo}/issues', {
+    owner: 'srinva',
+    repo: 'Todoist-Notion',
+    title: 'Test Issue'
+  })
+}
+
+//createTodoistTask("Node test", "today", 2)
 
 //updateNotion("Test check", "2")
 
@@ -83,6 +94,7 @@ app.post('/todoist', (req, res) => {
   console.log(req.body)
   if (req.body.event_name == "item:added") {
     updateNotion(req.body.event_data.content, "2")
+    //createGithubIssue()
   }
   res.status(200).send({status: 200});
 })
@@ -94,7 +106,7 @@ app.post('/github', (req, res) => {
   if (req.headers['x-github-event'] = 'issues') {
     if (req.body.action = 'opened') {
       if (req.body.label != undefined) {
-      updateNotion(req.body.issue.title, req.body.label.name)
+      createTodoistTask(req.body.issue.title, "today", 4)
       } else {
 
       }
