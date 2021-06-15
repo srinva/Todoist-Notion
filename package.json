@@ -1,0 +1,28 @@
+{
+  "name": "todoistnotionintegration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@notionhq/client": "^0.1.9",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "https": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srinva/Todoist-Notion.git"
+  },
+  "author": "Srinath Vasudevan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srinva/Todoist-Notion/issues"
+  },
+  "homepage": "https://github.com/srinva/Todoist-Notion#readme"
+}
